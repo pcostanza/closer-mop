@@ -1,4 +1,4 @@
-:abcl1.3.0
+:abcl1.3.1
 #| all features implemented |#
 
 :allegro8.2-9.0
@@ -282,7 +282,7 @@
  (:subclasses-of-standard-slot-definition-do-not-inherit-exported-slots)
  (:subclasses-of-standard-writer-method-do-not-inherit-exported-slots))
 
-:sbcl1.1.17
+:sbcl1.1.18
 #| all features implemented |#
 
 :scl1.3.9
