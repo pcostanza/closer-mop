@@ -50,7 +50,7 @@
  (:remove-method-calls-compute-discriminating-function)
  (:subclasses-of-method-combination-do-not-inherit-exported-slots))
 
-:clozure-common-lisp1.9
+:clozure-common-lisp1.10
 ((:add-method-calls-compute-discriminating-function fixed)
  (:compute-slots-requested-slot-order-honoured)
  (:defmethod-calls-generic-function-method-class fixed)
