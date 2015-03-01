@@ -125,7 +125,7 @@
  (:subclasses-of-standard-slot-definition-do-not-inherit-exported-slots)
  (:subclasses-of-standard-writer-method-do-not-inherit-exported-slots))
 
-:ecl13.5.1
+:ecl15.2.21
 ((:class-initialization-calls-reader-method-class)
  (:class-initialization-calls-writer-method-class)
  (:subclasses-of-built-in-class-do-not-inherit-exported-slots fixed)
