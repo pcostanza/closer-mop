@@ -194,7 +194,7 @@
  (:subclasses-of-standard-slot-definition-do-not-inherit-exported-slots)
  (:subclasses-of-standard-writer-method-do-not-inherit-exported-slots))
 
-:lispworks6.0.1-6.1.1
+:lispworks6.0.1-7.0.0
 ((:add-method-calls-compute-discriminating-function)
  (:add-method-updates-specializer-direct-generic-functions fixed)
  (:class-default-initargs)

@@ -16,7 +16,7 @@
 
   #+lispworks5.1
   (:import-from #:system #:with-hash-table-locked)
-  #+lispworks6
+  #+(or lispworks6 lispworks7)
   (:import-from #:hcl #:with-hash-table-locked)
 
   #-(or clisp scl)
