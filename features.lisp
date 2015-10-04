@@ -84,7 +84,7 @@
  (:subclasses-of-standard-accessor-method-do-not-inherit-exported-slots)
  (:subclasses-of-standard-writer-method-do-not-inherit-exported-slots))
 
-:cmu20f
+:cmu21a
 ((:accessor-method-initialized-with-function fixed)
  (:accessor-method-initialized-with-lambda-list fixed)
  (:accessor-method-initialized-with-slot-definition fixed)
