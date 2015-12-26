@@ -101,7 +101,7 @@
   (declare (optimize (speed 3) (space 0) (compilation-speed 0)))
   (loop with primary-qualifiers = (list (ccl::method-combination-name combination))
         for method in methods
-        for qualifiers in (method-qualifiers method)
+        for qualifiers = (method-qualifiers method)
         if (equal qualifiers primary-qualifiers) collect method into primary
         else if (equal qualifiers '(:around)) collect method into around
         else do (invalid-method-error method "Invalid method qualifiers ~S." qualifiers)
