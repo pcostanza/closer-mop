@@ -11,7 +11,6 @@ Currently, the following Common Lisp implementations are supported:
 * LispWorks 6.1.1 Personal Edition
 * LispWorks 7.0.0 Hobbyist Edition
 * Steel Bank Common Lisp 1.3.2
-All tests have been performed on Mac OS X 10.11.3
 
 The following implementations were supported in the past:
 * Allegro Common Lisp 7.0, 8.0 - 8.2 Enterprise Editions
