@@ -28,6 +28,7 @@ The following implementations were supported in the past:
 * OpenMCL 1.0
 * Scieneer Common Lisp 1.3.9
 * Steel Bank Common Lisp from 0.9.16 onward (except version 1.0.0)
+
 The respective code conditionalizations are still in the source files, so there is a good chance that they still work, especially for current or newer versions. However, there is no garantuee that this is the case, and active work for these implementations is currently on hold.
 
 New in version 1.0.0:
