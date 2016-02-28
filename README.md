@@ -1,6 +1,8 @@
 # Closer to MOP
 Closer to MOP is a compatibility layer that rectifies many of the absent or incorrect CLOS MOP features across a broad range of Common Lisp implementations.
 
+Closer to MOP is also provided by [Quicklisp](https://www.quicklisp.org/).
+
 Currently, the following Common Lisp implementations are supported:
 * Allegro Common Lisp 10.0 Express Edition
 * Armed Bear Common Lisp 1.3.3
