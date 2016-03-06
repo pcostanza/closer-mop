@@ -12,7 +12,7 @@ Currently, the following Common Lisp implementations are supported:
 * Embeddable Common Lisp 16.0.0
 * LispWorks 6.1.1 Personal Edition
 * LispWorks 7.0.0 Hobbyist Edition
-* Steel Bank Common Lisp 1.3.2
+* Steel Bank Common Lisp 1.3.3
 
 The following implementations were supported in the past:
 * Allegro Common Lisp 7.0, 8.0 - 8.2 Enterprise Editions
