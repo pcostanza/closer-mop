@@ -520,6 +520,7 @@
                               `(intern-eql-specializer ,(cadr specializer-name)))
                              (t (error "Invalid specializer ~S in defmethod form ~S."
                                        specializer-name form))))
+		      (specializer (make-load-form specializer-name))
                       (t (error "Invalid specializer ~S in defmethod form ~S."
                                 specializer-name form)))))
     
