@@ -10,6 +10,7 @@
    (:file "closer-mop-shared")
    (:file "closer-abcl"      :if-feature :abcl)
    (:file "closer-allegro"   :if-feature :allegro)
+   (:file "closer-clasp"     :if-feature :clasp)
    (:file "closer-clisp"     :if-feature :clisp)
    (:file "closer-clozure"   :if-feature :clozure)
    (:file "closer-cmu"       :if-feature :cmu)
