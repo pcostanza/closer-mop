@@ -7,7 +7,7 @@
   #+(or allegro clozure lispworks mcl)
   (:shadow #:standard-class)
 
-  #+(or allegro clisp clozure ecl lispworks sbcl)
+  #+(or allegro clisp clozure ecl clasp lispworks sbcl)
   (:shadow #:defgeneric #:defmethod #:standard-generic-function)
 
   #+clozure (:shadow standard-method)
@@ -26,6 +26,7 @@
    #+clozure   #:ccl
    #+cmu       #:pcl
    #+ecl       #:clos
+   #+clasp     #:clos
    #+lispworks #:clos
    #+mcl       #:ccl
    #+sbcl      #:sb-pcl
@@ -39,6 +40,7 @@
    #+clozure   #:ccl
    #+cmu       #:clos-mop
    #+ecl       #:clos
+   #+clasp     #:clos
    #+lispworks #:clos
    #+mcl       #:ccl
    #+sbcl      #:sb-mop
