@@ -131,6 +131,7 @@
  (:discriminating-functions-can-be-funcalled)
  (:documentation-passed-to-effective-slot-definition-class)
  (:effective-slot-definition-initialized-with-documentation)
+ (:extensible-allocation)
  (:method-initialized-with-function)
  (:multiple-slot-options-passed-as-list-to-direct-slot-definition-class) ; fix with fix-slot-initargs
  (:reinitialize-instance-calls-compute-discriminating-function fixed)

@@ -72,6 +72,7 @@ CMUCL 21a
 - Class initialization doesn't call READER-METHOD-CLASS and WRITER-METHOD-CLASS for accessor methods. Fixed.
 - The object returned by compute-discriminating-function cannot be a closure. Likewise, the second parameter to set-funcallable-instance-function cannot be a closure, but only a "pure" function/thunk. Not fixed.
 - Effective slot definitions are not initialized with :documentation, and EFFECTIVE-SLOT-DEFINITION-CLASS also doesn't receive that initarg. Not fixed.
+- The :ALLOCATION type cannot be extended. Not fixed.
 - Calling DOCUMENTATION on effective slot definition metaobjects don't return their documentation as specified in ANSI Common Lisp. Fixed.
 - Methods are not initialized with :function. Not fixed.
 - Multiple slot options are not passed as lists to DIRECT-SLOT-DEFINITION-CLASS. Not fixed, but use FIX-SLOT-INITARGS as a workaround.
