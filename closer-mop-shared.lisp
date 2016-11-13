@@ -511,7 +511,7 @@
       (loop for specializer-name in (extract-specializer-names specialized-args)
             collect (typecase specializer-name
                       (symbol `(find-class ',specializer-name))
-                      (class specializer-name)
+                      ((or class specializer) specializer-name)
                       (cons (cond
                              ((> (length specializer-name) 2)
                               (error "Invalid specializer ~S in defmethod form ~S."
@@ -520,7 +520,6 @@
                               `(intern-eql-specializer ,(cadr specializer-name)))
                              (t (error "Invalid specializer ~S in defmethod form ~S."
                                        specializer-name form))))
-		      (specializer (make-load-form specializer-name))
                       (t (error "Invalid specializer ~S in defmethod form ~S."
                                 specializer-name form)))))
     
