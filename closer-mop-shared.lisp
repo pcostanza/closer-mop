@@ -65,7 +65,7 @@
   (defun classp (thing)
     (typep thing 'class)))
 
-#+(or allegro clisp clozure ecl lispworks sbcl)
+#+(or allegro clisp clozure ecl clasp lispworks sbcl)
 (progn ;;; New generic functions.
 
   (defclass standard-generic-function (cl:standard-generic-function)
@@ -88,7 +88,7 @@
     (defclass standard-method (cl:standard-method)
       ((fn :initarg :real-function :reader method-function))))
 
-  #-ecl
+  #-(or ecl clasp)
   (progn
     (declaim (inline m-function))
     
@@ -131,7 +131,7 @@
 
   #-(or abcl sbcl) (cl:defgeneric make-method-lambda (generic-function method lambda-expression environment))
 
-  #-ecl
+  #-(or ecl clasp)
   (cl:defmethod make-method-lambda ((gf standard-generic-function) (method standard-method)
                                     lambda-expression environment)
     (declare (ignore environment) (optimize (speed 3) (space 0) (compilation-speed 0)))
@@ -199,7 +199,7 @@
 
   (cl:defgeneric compute-effective-method-function (gf effective-method options))
 
-  #-ecl
+  #-(or ecl clasp)
   (cl:defmethod compute-effective-method-function ((gf generic-function) effective-method options)
     (declare (optimize (speed 3) (space 0) (compilation-speed 0)))
     (when #-clisp options
@@ -616,7 +616,7 @@
 
     #+mcl (eval form)))
 
-#+(or abcl clozure ecl lispworks sbcl)
+#+(or abcl clozure ecl clasp lispworks sbcl)
 (defun ensure-method (gf lambda-expression
                          &key (method-class (generic-function-method-class gf))
                          (qualifiers ())
@@ -658,7 +658,7 @@
 (define-modify-macro nconcf (&rest lists) nconc)
 
 (defun fix-slot-initargs (initargs)
-  #+(or abcl allegro clisp clozure ecl lispworks mcl sbcl)
+  #+(or abcl allegro clisp clozure ecl clasp lispworks mcl sbcl)
   initargs
 
   #+(or cmu scl)

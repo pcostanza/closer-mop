@@ -4,18 +4,18 @@
   :author "Pascal Costanza"
   :version "1.0.0"
   :licence "MIT-style license"
+  :serial t
   :components
   ((:file "closer-mop-packages")
-   (:file "closer-mop-shared" :depends-on ("closer-mop-packages"))
-   (:file
-    #+abcl	"closer-abcl"
-    #+allegro   "closer-allegro"
-    #+clisp     "closer-clisp"
-    #+clozure   "closer-clozure"
-    #+cmu       "closer-cmu"
-    #+ecl       "closer-ecl"
-    #+lispworks "closer-lispworks"
-    #+mcl       "closer-mcl"
-    #+sbcl      "closer-sbcl"
-    #+scl       "closer-scl"
-    :depends-on ("closer-mop-packages" "closer-mop-shared"))))
+   (:file "closer-mop-shared")
+   (:file "closer-abcl"      :if-feature :abcl)
+   (:file "closer-allegro"   :if-feature :allegro)
+   (:file "closer-clasp"     :if-feature :clasp)
+   (:file "closer-clisp"     :if-feature :clisp)
+   (:file "closer-clozure"   :if-feature :clozure)
+   (:file "closer-cmu"       :if-feature :cmu)
+   (:file "closer-ecl"       :if-feature :ecl)
+   (:file "closer-lispworks" :if-feature :lispworks)
+   (:file "closer-mcl"       :if-feature :mcl)
+   (:file "closer-sbcl"      :if-feature :sbcl)
+   (:file "closer-scl"       :if-feature :scl)))

@@ -1,4 +1,4 @@
-:abcl1.3.3
+:abcl1.4.0
 #| all features implemented |#
 
 :allegro8.2-9.0
@@ -117,7 +117,7 @@
  (:subclasses-of-standard-accessor-method-do-not-inherit-exported-slots)
  (:subclasses-of-standard-writer-method-do-not-inherit-exported-slots))
 
-:cmu21a
+:cmu21b
 ((:accessor-method-initialized-with-function fixed)
  (:accessor-method-initialized-with-lambda-list fixed)
  (:accessor-method-initialized-with-slot-definition fixed)
@@ -131,6 +131,7 @@
  (:discriminating-functions-can-be-funcalled)
  (:documentation-passed-to-effective-slot-definition-class)
  (:effective-slot-definition-initialized-with-documentation)
+ (:extensible-allocation)
  (:method-initialized-with-function)
  (:multiple-slot-options-passed-as-list-to-direct-slot-definition-class) ; fix with fix-slot-initargs
  (:reinitialize-instance-calls-compute-discriminating-function fixed)
@@ -315,7 +316,7 @@
  (:subclasses-of-standard-slot-definition-do-not-inherit-exported-slots)
  (:subclasses-of-standard-writer-method-do-not-inherit-exported-slots))
 
-:sbcl1.3.6
+:sbcl1.3.11
 #| all features implemented |#
 
 :scl1.3.9
