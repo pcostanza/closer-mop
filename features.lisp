@@ -36,7 +36,7 @@
  (:subclasses-of-standard-writer-method-do-not-inherit-exported-slots)
  (:t-is-always-a-valid-superclass))
 
-:allegro10.0
+:allegro10.0-10.1
 ((:class-default-initargs)
  (:class-direct-default-initargs)
  (:defgeneric-calls-find-method-combination)

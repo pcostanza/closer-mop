@@ -4,7 +4,7 @@ Closer to MOP is a compatibility layer that rectifies many of the absent or inco
 Closer to MOP is also provided by [Quicklisp](https://www.quicklisp.org/).
 
 Currently, the following Common Lisp implementations are supported:
-* Allegro Common Lisp 10.0 Express Edition
+* Allegro Common Lisp 10.1 Express Edition
 * Armed Bear Common Lisp 1.4.0
 * CLisp 2.49
 * Clozure Common Lisp 1.11
@@ -16,7 +16,7 @@ Currently, the following Common Lisp implementations are supported:
 
 The following implementations were supported in the past:
 * Allegro Common Lisp 7.0, 8.0 - 8.2 Enterprise Editions
-* Allegro Common Lisp 9.0 Express Edition
+* Allegro Common Lisp 9.0, 10.0 Express Editions
 * Armed Bear Common Lisp 1.1.1, 1.2.1, 1.3.0-1.3.3
 * CLisp from 2.35 onward
 * Clozure Common Lisp 1.2 - 1.10
