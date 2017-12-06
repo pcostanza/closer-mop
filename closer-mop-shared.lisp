@@ -16,22 +16,22 @@
   (flet ((get-class (class) (etypecase class
                               (class class)
                               (symbol (find-class class)))))
-    
+
       (loop with class = (get-class class)
             with superclass = (get-class superclass)
-            
+
             for superclasses = (list class)
-            then (set-difference 
+            then (set-difference
                   (union (class-direct-superclasses current-class) superclasses)
                   seen)
 
             for current-class = (first superclasses)
 
             while current-class
-            
+
             if (eq current-class superclass) return t
             else collect current-class into seen
-            
+
             finally (return nil))))
 
 #+(or allegro clozure lispworks mcl)
@@ -40,7 +40,7 @@
   ;; more tricky than for class metaobject classes because
   ;; we don't want to make all standard-classes compatible to
   ;; each other.
-  
+
   ;; Our validate-superclass may get passed a class-prototype
   ;; as its second argument, so don't expect its readers to
   ;; yield useful information. (In ANSI parlance, "the
@@ -55,13 +55,13 @@
            (when (eq (class-of superclass) (find-class ',superclass))
              (validate-superclass class (class-prototype (find-class ',class))))))))
 
-#+(or clisp scl)
+#+(or clisp scl mezzano)
 (progn
   (declaim (inline classp))
 
   (define-compiler-macro classp (thing)
     `(typep ,thing 'class))
-  
+
   (defun classp (thing)
     (typep thing 'class)))
 
@@ -71,11 +71,11 @@
   (defclass standard-generic-function (cl:standard-generic-function)
     (#+(or clozure lispworks) (argument-order :accessor argument-order)
      #-(or abcl sbcl)         (initial-methods :initform '()))
-    
+
     (:metaclass
      #-lispworks funcallable-standard-class
      #+lispworks clos:funcallable-standard-class)
-    
+
     #+clozure
     (:default-initargs :name (copy-symbol :name) :method-class (find-class 'standard-method)))
 
@@ -91,17 +91,17 @@
   #-(or ecl clasp)
   (progn
     (declaim (inline m-function))
-    
+
     (defun m-function (m)
       (method-function m))
-    
+
     (define-compiler-macro m-function (m)
       (handler-case (method-function m)
         (error () `(the function (method-function (the method ,m)))))))
-  
+
   (defun compute-argument-order (gf nof-required-args)
     (loop with specialized-count = (make-array nof-required-args :initial-element 0)
-        
+
           for method in (generic-function-methods gf) do
           (loop for specializer in (method-specializers method)
                 for index from 0
@@ -109,7 +109,7 @@
                 do (incf (svref specialized-count index)))
 
           finally
-  
+
           (loop for arg in (generic-function-argument-precedence-order gf)
                 for pos = (position arg (generic-function-lambda-list gf))
                 when (> (svref specialized-count pos) 0)
@@ -260,7 +260,7 @@
 
   #+clozure
   (cl:defgeneric compute-effective-method (generic-function combination methods))
-  
+
   #+clozure
   (cl:defgeneric compute-discriminating-function (generic-function))
 
@@ -339,8 +339,8 @@
 
   (defun compute-discriminator (gf compute-native-discriminator)
     (declare (optimize (speed 3) (space 0) (compilation-speed 0)))
-    (let ((nof-required-args 
-           (length (required-args 
+    (let ((nof-required-args
+           (length (required-args
                     (handler-case (generic-function-lambda-list gf)
                       (unbound-slot ()
                         (return-from compute-discriminator
@@ -435,7 +435,7 @@
     #-(or allegro lispworks)
     (defmacro without-redefinition-warnings (&body body)
       `(progn ,@body))
-    
+
     #+allegro
     (defmacro without-redefinition-warnings (&body body)
       `(excl:without-redefinition-warnings ,@body))
@@ -443,7 +443,7 @@
     #+lispworks
     (defmacro without-redefinition-warnings (&body body)
       `(let ((dspec:*redefinition-action* :quiet)) ,@body))
-    
+
     (defmacro defgeneric (&whole form name (&rest args) &body options &environment env)
       (loop initially (unless (every #'consp options)
                         (error "Illegal options in defgeneric form ~S." form))
@@ -506,7 +506,7 @@
                                     ((setq rest (member '&rest method-lambda-list))
                                      (nconc gf-lambda-list (subseq rest 0 2)))
                                     (t gf-lambda-list))))))
-    
+
     (defun extract-specializers (specialized-args form)
       (loop for specializer-name in (extract-specializer-names specialized-args)
             collect (typecase specializer-name
@@ -522,7 +522,7 @@
                                        specializer-name form))))
                       (t (error "Invalid specializer ~S in defmethod form ~S."
                                 specializer-name form)))))
-    
+
     (defun load-method (name gf-lambda-list type qualifiers specializers lambda-list function options)
       (let* ((gf (if (fboundp name) (fdefinition name)
                    (ensure-generic-function name :lambda-list gf-lambda-list :generic-function-class type)))
@@ -547,7 +547,7 @@
   #-(or abcl sbcl)
   (defmacro defmethod (&whole form name &body body &environment env)
     (loop with generic-function = (when (fboundp name) (fdefinition name))
-        
+
           initially
           (when (macroexpand 'warn-on-defmethod-without-generic-function env)
             (unless generic-function
@@ -598,18 +598,18 @@
 )
 
 #+(or allegro clisp cmu mcl scl)
-(defun ensure-method (gf lambda-expression 
+(defun ensure-method (gf lambda-expression
                          &key (qualifiers ())
                          (lambda-list (cadr lambda-expression))
                          (specializers (required-args lambda-list (constantly (find-class 't)))))
-  
+
   (let ((form `(defmethod ,(generic-function-name gf) ,@qualifiers
                  ,(loop for specializer in specializers
                         for (arg . rest) on lambda-list
                         collect `(,arg ,specializer) into args
                         finally (return (nconc args rest)))
                  ,@(cddr lambda-expression))))
-    
+
     #+(or allegro clisp cmu scl)
     (funcall (compile nil `(lambda () ,form)))
 
