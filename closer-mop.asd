@@ -8,14 +8,20 @@
   :components
   ((:file "closer-mop-packages")
    (:file "closer-mop-shared")
-   (:file "closer-abcl"      :if-feature :abcl)
-   (:file "closer-allegro"   :if-feature :allegro)
-   (:file "closer-clasp"     :if-feature :clasp)
-   (:file "closer-clisp"     :if-feature :clisp)
-   (:file "closer-clozure"   :if-feature :clozure)
-   (:file "closer-cmu"       :if-feature :cmu)
-   (:file "closer-ecl"       :if-feature :ecl)
-   (:file "closer-lispworks" :if-feature :lispworks)
-   (:file "closer-mcl"       :if-feature :mcl)
-   (:file "closer-sbcl"      :if-feature :sbcl)
-   (:file "closer-scl"       :if-feature :scl)))
+   #+clisp
+   (:file "closer-clisp")
+   #-clisp
+   (:module "implementation"
+    :pathname ""
+    :components
+    ((:file "closer-abcl"      :if-feature :abcl)
+     (:file "closer-allegro"   :if-feature :allegro)
+     (:file "closer-clasp"     :if-feature :clasp)
+     (:file "closer-clisp"     :if-feature :clisp)
+     (:file "closer-clozure"   :if-feature :clozure)
+     (:file "closer-cmu"       :if-feature :cmu)
+     (:file "closer-ecl"       :if-feature :ecl)
+     (:file "closer-lispworks" :if-feature :lispworks)
+     (:file "closer-mcl"       :if-feature :mcl)
+     (:file "closer-sbcl"      :if-feature :sbcl)
+     (:file "closer-scl"       :if-feature :scl)))))
