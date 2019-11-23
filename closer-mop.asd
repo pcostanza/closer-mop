@@ -23,5 +23,6 @@
      (:file "closer-ecl"       :if-feature :ecl)
      (:file "closer-lispworks" :if-feature :lispworks)
      (:file "closer-mcl"       :if-feature :mcl)
+     (:file "closer-mezzano"   :if-feature :mezzano)
      (:file "closer-sbcl"      :if-feature :sbcl)
      (:file "closer-scl"       :if-feature :scl)))))

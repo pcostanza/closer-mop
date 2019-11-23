@@ -63,11 +63,11 @@
    #:standard-slot-definition
    #:standard-writer-method
 
-   #-(or lispworks4.3 mezzano) #:accessor-method-slot-definition
-   #-(or scl mezzano) #:add-dependent
-   #-(or scl mezzano) #:add-direct-method
-   #-mezzano #:add-direct-subclass
-   #-(or scl mezzano) #:class-default-initargs
+   #-lispworks4.3 #:accessor-method-slot-definition
+   #-scl #:add-dependent
+   #-scl #:add-direct-method
+   #:add-direct-subclass
+   #-scl #:class-default-initargs
    #-scl #:class-direct-default-initargs
    #:class-direct-slots
    #:class-direct-subclasses
@@ -78,7 +78,7 @@
    #:class-slots
    #-(or clozure lispworks mcl) #:compute-applicable-methods-using-classes
    #:compute-class-precedence-list
-   #-(or lispworks4 lispworks5 mezzano) #:compute-default-initargs
+   #-(or lispworks4 lispworks5) #:compute-default-initargs
    #-clozure #:compute-discriminating-function
    #-(or clozure scl) #:compute-effective-method
    #:compute-effective-slot-definition
@@ -87,13 +87,13 @@
    #:effective-slot-definition-class
    #:ensure-class
    #:ensure-class-using-class
-   #-mezzano #:ensure-generic-function-using-class
+   #:ensure-generic-function-using-class
    #-lispworks #:eql-specializer-object
    #:extract-lambda-list
    #:extract-specializer-names
    #:finalize-inheritance
    #-(or lispworks mezzano) #:find-method-combination
-   #-(or lispworks scl mezzano) #:funcallable-standard-instance-access
+   #-(or lispworks scl) #:funcallable-standard-instance-access
    #-allegro #:generic-function-argument-precedence-order
    #:generic-function-declarations
    #:generic-function-lambda-list
@@ -103,15 +103,15 @@
    #:generic-function-name
    #-lispworks #:intern-eql-specializer
    #-(or allegro clisp clozure lispworks mcl scl mezzano) #:make-method-lambda
-   #-(or scl mezzano) #:map-dependents
+   #-scl #:map-dependents
    #-clozure #:method-function
    #:method-generic-function
    #:method-lambda-list
    #:method-specializers
    #-lispworks4.3 #:reader-method-class
-   #-(or scl mezzano) #:remove-dependent
-   #-(or scl mezzano) #:remove-direct-method
-   #-mezzano #:remove-direct-subclass
+   #-scl #:remove-dependent
+   #-scl #:remove-direct-method
+   #:remove-direct-subclass
    #:set-funcallable-instance-function
    #:slot-boundp-using-class
    #:slot-definition-allocation
@@ -124,11 +124,11 @@
    #:slot-definition-writers
    #:slot-definition-type
    #:slot-makunbound-using-class
-   #-mezzano #:slot-value-using-class
-   #-(or lispworks mezzano) #:specializer-direct-generic-functions
-   #-mezzano #:specializer-direct-methods
-   #-(or lispworks mezzano) #:standard-instance-access
-   #-(or scl mezzano) #:update-dependent
+   #:slot-value-using-class
+   #-lispworks #:specializer-direct-generic-functions
+   #:specializer-direct-methods
+   #-lispworks #:standard-instance-access
+   #-scl #:update-dependent
    #:validate-superclass
    #-lispworks4.3 #:writer-method-class)
 
@@ -139,7 +139,6 @@
    #:effective-slot-definition
    #:eql-specializer
    #+lispworks #:eql-specializer*
-   #+mezzano #:eql-specializer
    #:forward-referenced-class
    #:funcallable-standard-class
    #:funcallable-standard-object
@@ -214,7 +213,6 @@
    #:generic-function-name
    #:intern-eql-specializer
    #+lispworks #:intern-eql-specializer*
-   #+mezzano #:intern-eql-specializer
    #:make-method-lambda
    #:map-dependents
    #:method-function
