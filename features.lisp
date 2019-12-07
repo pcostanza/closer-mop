@@ -1,4 +1,4 @@
-:abcl1.5.0
+:abcl1.6.0
 #| all features implemented |#
 
 :allegro8.2-9.0
