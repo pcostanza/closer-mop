@@ -129,6 +129,17 @@
           else append (cdr car) into declarations
           finally (return (values documentation declarations (cons car cdr)))))
 
+  (defun block-name (function-name)
+    (cond ((and (symbolp function-name)
+                (not (null function-name)))
+           function-name)
+          ((and (consp function-name)
+                (eql (first function-name) 'setf)
+                (consp (cdr function-name))
+                (null (cddr function-name)))
+           (second function-name))
+          (t (error "~S is not a valid function name." function-name))))
+
   #-(or abcl sbcl) (cl:defgeneric make-method-lambda (generic-function method lambda-expression environment))
 
   #-(or ecl clasp)
@@ -143,26 +154,35 @@
       (destructuring-bind
           (lambda (&rest lambda-args) &body body)
           lambda-expression
-        (declare (ignore lambda-args))
         (assert (eq lambda 'lambda))
-        (values
-         `(lambda (,args ,next-methods &rest ,more-args)
-            (declare (ignorable ,args ,next-methods ,more-args))
-            (flet ((call-next-method (&rest args)
-                     (if ,next-methods
-                       (apply (method-function (first ,next-methods))
-                              (if args args ,args) (rest ,next-methods) ,more-args)
-                       (apply #'no-next-method
-                              (getf ,more-args :generic-function)
-                              (getf ,more-args :method)
-                              (if args args ,args))))
-                   (next-method-p () (not (null ,next-methods))))
-              (declare (inline call-next-method next-method-p)
-                       (ignorable #'call-next-method #'next-method-p))
-              (flet ((,method-function ,@(rest lambda-expression)))
-                (declare (inline ,method-function))
-                (apply #',method-function ,args))))
-         (let ((documentation (parse-method-body body lambda-expression)))
+        (multiple-value-bind (documentation declarations main-body)
+            (parse-method-body body lambda-expression)
+          (values
+           `(lambda (,args ,next-methods &rest ,more-args)
+              (declare (ignorable ,args ,next-methods ,more-args))
+              (flet ((call-next-method (&rest args)
+                       (if ,next-methods
+                           (apply (method-function (first ,next-methods))
+                                  (if args args ,args) (rest ,next-methods) ,more-args)
+                           (apply #'no-next-method
+                                  (getf ,more-args :generic-function)
+                                  (getf ,more-args :method)
+                                  (if args args ,args))))
+                     (next-method-p () (not (null ,next-methods))))
+                (declare (inline call-next-method next-method-p)
+                         (ignorable #'call-next-method #'next-method-p))
+                (flet ((,method-function ,lambda-args
+                         (declare ,@declarations)
+                         (declare (ignorable ,@(loop for arg in lambda-args
+                                                     until (member arg lambda-list-keywords)
+                                                     if (symbolp arg)
+                                                       collect arg
+                                                     else
+                                                       collect (car arg))))
+                         (block ,(block-name (generic-function-name gf))
+                           ,@main-body)))
+                  (declare (inline ,method-function))
+                  (apply #',method-function ,args))))
            (nconc
             (when documentation
               (list :documentation documentation))
@@ -563,29 +583,22 @@
           finally
           (destructuring-bind
               ((&rest specialized-args) &body body) tail
-            (multiple-value-bind
-                (documentation declarations main-body)
-                (parse-method-body body form)
-              (let* ((lambda-list (extract-lambda-list specialized-args))
-                     (gf-lambda-list (create-gf-lambda-list lambda-list))
-                     (specializers (extract-specializers specialized-args form))
-                     (method-class (generic-function-method-class generic-function)))
-                #+allegro (ensure-finalized method-class)
-                (multiple-value-bind
+            (let* ((lambda-list (extract-lambda-list specialized-args))
+                   (gf-lambda-list (create-gf-lambda-list lambda-list))
+                   (specializers (extract-specializers specialized-args form))
+                   (method-class (generic-function-method-class generic-function)))
+              #+allegro (ensure-finalized method-class)
+              (multiple-value-bind
                     (method-lambda method-options)
-                    (make-method-lambda generic-function (class-prototype method-class)
-                                        `(lambda ,lambda-list
-                                           ,@(when documentation (list documentation))
-                                           (declare ,@declarations)
-                                           (declare (ignorable ,@(loop for arg in specialized-args
-                                                                       until (member arg lambda-list-keywords)
-                                                                       when (consp arg) collect (car arg))))
-                                           (block ,(if (consp name) (cadr name) name) ,@main-body))
-                                        env)
-                  (return-from defmethod
-                    `(load-method ',name ',gf-lambda-list ',(type-of generic-function)
-                                  ',qualifiers (list ,@specializers) ',lambda-list
-                                  (function ,method-lambda) ',method-options))))))))
+                  (make-method-lambda
+                   generic-function
+                   (class-prototype method-class)
+                   `(lambda ,lambda-list ,@body)
+                   env)
+                (return-from defmethod
+                  `(load-method ',name ',gf-lambda-list ',(type-of generic-function)
+                                ',qualifiers (list ,@specializers) ',lambda-list
+                                (function ,method-lambda) ',method-options)))))))
 
   #+(or abcl sbcl)
   (defmacro defmethod (&whole form name &body body &environment env)
