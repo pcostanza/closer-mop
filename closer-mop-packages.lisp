@@ -92,7 +92,7 @@
    #:extract-lambda-list
    #:extract-specializer-names
    #:finalize-inheritance
-   #-(or lispworks mezzano) #:find-method-combination
+   #-lispworks #:find-method-combination
    #-(or lispworks scl) #:funcallable-standard-instance-access
    #-allegro #:generic-function-argument-precedence-order
    #:generic-function-declarations
