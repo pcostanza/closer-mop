@@ -11,7 +11,7 @@ Currently, the following Common Lisp implementations are supported:
 * CMU Common Lisp 21d
 * Embeddable Common Lisp 16.1.3
 * LispWorks 7.1.2 Hobbyist Edition
-* Steel Bank Common Lisp 2.0.6
+* Steel Bank Common Lisp 2.0.7
 
 The following implementations were supported in the past:
 * Allegro Common Lisp 7.0, 8.0 - 8.2 Enterprise Editions
