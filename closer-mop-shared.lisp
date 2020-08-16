@@ -657,7 +657,7 @@
 (define-modify-macro nconcf (&rest lists) nconc)
 
 (defun fix-slot-initargs (initargs)
-  #+(or abcl allegro clisp clozure ecl clasp lispworks mcl sbcl)
+  #+(or abcl allegro clisp clozure ecl clasp lispworks mcl mezzano sbcl)
   initargs
 
   #+(or cmu scl)
