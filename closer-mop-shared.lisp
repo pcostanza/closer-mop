@@ -130,8 +130,7 @@
           finally (return (values documentation declarations (cons car cdr)))))
 
   (defun block-name (function-name)
-    (cond ((and (symbolp function-name)
-                (not (null function-name)))
+    (cond ((symbolp function-name)
            function-name)
           ((and (consp function-name)
                 (eql (first function-name) 'setf)
@@ -175,10 +174,7 @@
                          (declare ,@declarations)
                          (declare (ignorable ,@(loop for arg in lambda-args
                                                      until (member arg lambda-list-keywords)
-                                                     if (symbolp arg)
-                                                       collect arg
-                                                     else
-                                                       collect (car arg))))
+                                                     collect arg)))
                          (block ,(block-name (generic-function-name gf))
                            ,@main-body)))
                   (declare (inline ,method-function))
