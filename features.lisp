@@ -316,7 +316,7 @@
  (:subclasses-of-standard-slot-definition-do-not-inherit-exported-slots)
  (:subclasses-of-standard-writer-method-do-not-inherit-exported-slots))
 
-:sbcl2.1.2
+:sbcl2.1.3
 #| all features implemented |#
 
 :scl1.3.9
