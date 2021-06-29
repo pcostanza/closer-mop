@@ -19,7 +19,7 @@
   #+(and lispworks (not (or lispworks4 lispworks5)))
   (:import-from #:hcl #:with-hash-table-locked)
 
-  #-(or clisp scl mezzano)
+  #-(or clisp scl mezzano sicl)
   (:import-from
    #+abcl      #:ext
    #+allegro   #:excl
@@ -46,6 +46,7 @@
    #+sbcl      #:sb-mop
    #+scl       #:clos
    #+mezzano   #:mezzano.clos
+   #+sicl      #:sicl-clos
 
    #:direct-slot-definition
    #:effective-slot-definition
