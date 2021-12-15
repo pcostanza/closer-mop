@@ -115,7 +115,23 @@ LispWorks 6.0.1 Enterprise Edition, 6.1 & 6.1.1 Professional Edition, 7.0, 7.1.2
 - COMPUTE-APPLICABLE-METHODS-USING-CLASSES doesn't exist. Fixed.
 - DEFGENERIC does not call FIND-METHOD-COMBINATION. Not fixed.
 - EQL-SPECIALIZER, EQL-SPECIALIZER-OBJECT and INTERN-EQL-SPECIALIZER don't exist. In LispWorks, eql specializers are lists not objects. I have provided EQL-SPECIALIZER as a type (not as a class) and EQL-SPECIALIZER-OBJECT and INTERN-EQL-SPECIALIZER to work on lists, and a class EQL-SPECIALIZER* and corresponding EQL-SPECIALIZER-OBJECT* and INTERN-EQL-SPECILAIZER* to soften the incompatibilities.
-- Before LispWorks 5.1, the :ALLOCATION type cannot be extended. Not fixed.
+- FIND-METHOD-COMBINATION doesn't exist. Fixed, but fixed version doesn't work with method combination options.
+- FUNCALLABLE-STANDARD-INSTANCE-ACCESS and STANDARD-INSTANCE-ACCESS don't exist. Fixed.
+- The function invocation protocol doesn't call COMPUTE-APPLICABLE-METHODS and COMPUTE-APPLICABLE-METHODS-USING-CLASSES. Fixed.
+- MAKE-METHOD-LAMBDA expects other parameters than specified. Fixed.
+- Method functions don't take parameters as specified in AMOP, but instead just the parameters that the generic function receives. Fixed.
+- The slot methods (SLOT-VALUE-USING-CLASS, etc.) are not specialized on effective slot definitions, but on slot names. Fixed.
+- The generated accessor methods don't use the slot methods for accessing slots. Fixed. (Don't use :optimize-slot-access to deoptimize slot access, or otherwise the fixed slot access protocol doesn't work anymore!)
+- SPECIALIZER-DIRECT-GENERIC-FUNCTIONS doesn't exist. Fixed.
+- STANDARD-CLASS and FUNCALLABLE-STANDARD-CLASS are not compatible. Not fixed.
+- Subclasses of BUILT-IN-CLASS (fixed), CLASS (fixed), DIRECT-SLOT-DEFINITION, EFFECTIVE-SLOT-DEFINITION, FORWARD-REFERENCED-CLASS (fixed), FUNCALLABLE-STANDARD-CLASS (fixed), SLOT-DEFINITION, STANDARD-ACCESSOR-METHOD, STANDARD-CLASS (fixed), STANDARD-DIRECT-SLOT-DEFINITION, STANDARD-EFFECTIVE-SLOT-DEFINITION, STANDARD-GENERIC-FUNCTION, STANDARD-METHOD, STANDARD-READER-METHOD, STANDARD-SLOT-DEFINITION and STANDARD-WRITER-METHOD will inherit slots whose names are exported symbols and/or accessible in the package common-lisp-user. Not fixed, except where indicated otherwise.
+
+LispWorks 8.0 Hobbyist Edition
+
+- ADD-METHOD, REMOVE-METHOD, INITIALIZE-INSTANCE and REINITIALIZE-INSTANCE do not determine a new discriminating function. This is postponed until function invocation instead, so shouldn't be a problem in practice.
+- COMPUTE-APPLICABLE-METHODS-USING-CLASSES doesn't exist. Fixed.
+- DEFGENERIC does not call FIND-METHOD-COMBINATION. Not fixed.
+- EQL-SPECIALIZER, EQL-SPECIALIZER-OBJECT and INTERN-EQL-SPECIALIZER don't exist. In LispWorks, eql specializers are lists not objects. I have provided EQL-SPECIALIZER as a type (not as a class) and EQL-SPECIALIZER-OBJECT and INTERN-EQL-SPECIALIZER to work on lists, and a class EQL-SPECIALIZER* and corresponding EQL-SPECIALIZER-OBJECT* and INTERN-EQL-SPECILAIZER* to soften the incompatibilities.
 - FIND-METHOD-COMBINATION doesn't exist. Fixed, but fixed version doesn't work with method combination options.
 - FUNCALLABLE-STANDARD-INSTANCE-ACCESS and STANDARD-INSTANCE-ACCESS don't exist. Fixed.
 - The function invocation protocol doesn't call COMPUTE-APPLICABLE-METHODS and COMPUTE-APPLICABLE-METHODS-USING-CLASSES. Fixed.
