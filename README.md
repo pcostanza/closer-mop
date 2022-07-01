@@ -9,7 +9,7 @@ Currently, the following Common Lisp implementations are supported:
 * CLisp 2.49
 * Clozure Common Lisp 1.12.1
 * Embeddable Common Lisp 21.2.1
-* LispWorks 8.0 Hobbyist Edition
+* LispWorks 8.0, 8.0.1 Hobbyist Edition
 * Steel Bank Common Lisp 2.2.6
 
 The following implementations were supported in the past:
