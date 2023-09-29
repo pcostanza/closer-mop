@@ -10,7 +10,7 @@ Currently, the following Common Lisp implementations are supported:
 * Clozure Common Lisp 1.12.2
 * Embeddable Common Lisp 23.9.9
 * LispWorks 8.0, 8.0.1 Hobbyist Edition
-* Steel Bank Common Lisp 2.3.8
+* Steel Bank Common Lisp 2.3.9
 
 The following implementations were supported in the past:
 * Allegro Common Lisp 7.0, 8.0 - 8.2 Enterprise Editions
