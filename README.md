@@ -8,7 +8,7 @@ Currently, the following Common Lisp implementations are supported:
 * Armed Bear Common Lisp 1.7.1
 * CLisp 2.49
 * Clozure Common Lisp 1.12.2
-* Embeddable Common Lisp 23.9.9
+* Embeddable Common Lisp 24.5.10
 * LispWorks 8.0, 8.0.1 Hobbyist Edition
 * Steel Bank Common Lisp 2.4.7
 
