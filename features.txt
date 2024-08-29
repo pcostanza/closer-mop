@@ -50,7 +50,7 @@ CLisp 2.49
 - MAKE-METHOD-LAMBDA is not provided. Fixed.
 - Subclasses of METHOD-COMBINATION will inherit slots whose names are exported symbols and/or accessible in the package common-lisp-user. Not fixed.
 
-Clozure Common Lisp 1.11.5, 1.12, 1.12.1 & 1.12.2
+Clozure Common Lisp 1.11.5, 1.12, 1.12.1, 1.12.2, 1.13
 
 - ADD-METHOD, REMOVE-METHOD, INITIALIZE-INSTANCE and REINITIALIZE-INSTANCE don't call COMPUTE-DISCRIMINATING-FUNCTION. Fixed.
 - DEFMETHOD doesn't call GENERIC-FUNCTION-METHOD-CLASS or MAKE-METHOD-LAMBDA. Fixed.
