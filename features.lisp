@@ -83,7 +83,7 @@
  (:remove-method-calls-compute-discriminating-function)
  (:subclasses-of-method-combination-do-not-inherit-exported-slots))
 
-:clozure-common-lisp1.12,1.12.1, 1.12.2, 1.13
+:clozure-common-lisp1.12,1.12.1,1.12.2,1.13
 ((:add-method-calls-compute-discriminating-function fixed)
  (:compute-slots-requested-slot-order-honoured)
  (:defmethod-calls-generic-function-method-class fixed)
@@ -274,7 +274,7 @@
  (:subclasses-of-standard-slot-definition-do-not-inherit-exported-slots)
  (:subclasses-of-standard-writer-method-do-not-inherit-exported-slots))
 
-:lispworks8.0-8.0.1
+:lispworks8.0,8.0.1,8.1.1
 ((:add-method-calls-compute-discriminating-function)
  (:add-method-updates-specializer-direct-generic-functions fixed)
  (:compute-applicable-methods-using-classes fixed)

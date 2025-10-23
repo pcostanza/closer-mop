@@ -126,7 +126,7 @@ LispWorks 6.0.1 Enterprise Edition, 6.1 & 6.1.1 Professional Edition, 7.0, 7.1.2
 - STANDARD-CLASS and FUNCALLABLE-STANDARD-CLASS are not compatible. Not fixed.
 - Subclasses of BUILT-IN-CLASS (fixed), CLASS (fixed), DIRECT-SLOT-DEFINITION, EFFECTIVE-SLOT-DEFINITION, FORWARD-REFERENCED-CLASS (fixed), FUNCALLABLE-STANDARD-CLASS (fixed), SLOT-DEFINITION, STANDARD-ACCESSOR-METHOD, STANDARD-CLASS (fixed), STANDARD-DIRECT-SLOT-DEFINITION, STANDARD-EFFECTIVE-SLOT-DEFINITION, STANDARD-GENERIC-FUNCTION, STANDARD-METHOD, STANDARD-READER-METHOD, STANDARD-SLOT-DEFINITION and STANDARD-WRITER-METHOD will inherit slots whose names are exported symbols and/or accessible in the package common-lisp-user. Not fixed, except where indicated otherwise.
 
-LispWorks 8.0, 8.0.1 Hobbyist Edition
+LispWorks 8.0, 8.0.1, 8.1.1 Hobbyist Edition
 
 - ADD-METHOD, REMOVE-METHOD, INITIALIZE-INSTANCE and REINITIALIZE-INSTANCE do not determine a new discriminating function. This is postponed until function invocation instead, so shouldn't be a problem in practice.
 - COMPUTE-APPLICABLE-METHODS-USING-CLASSES doesn't exist. Fixed.
