@@ -1,3 +1,5 @@
+This repository has moved to https://codeberg.org/pcostanza/closer-mop
+
 # Closer to MOP
 Closer to MOP is a compatibility layer that rectifies many of the absent or incorrect CLOS MOP features across a broad range of Common Lisp implementations.
 
